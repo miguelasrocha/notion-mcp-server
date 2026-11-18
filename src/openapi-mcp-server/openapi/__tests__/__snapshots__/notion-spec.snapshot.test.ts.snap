@@ -403,6 +403,7 @@ Error Responses:
       "after",
       "block_id",
       "children",
+      "position",
     ],
     "required": [
       "block_id",

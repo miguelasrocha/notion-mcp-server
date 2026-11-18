@@ -10853,6 +10853,10 @@
                   "after": {
                     "type": "string",
                     "description": "The ID of the existing block that the new block should be appended after."
+                  },
+                  "position": {
+                    "type": "object",
+                    "additionalProperties": true
                   }
                 }
               }
@@ -11743,7 +11747,12 @@
           }
         },
         "deprecated": false,
-        "security": []
+        "security": [],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/notionVersion"
+          }
+        ]
       }
     },
     "/v1/data_sources/{data_source_id}/query": {
@@ -12555,6 +12564,9 @@
               "default": "2026-03-11"
             },
             "description": "The Notion API version. The page-markdown endpoints require 2026-03-11 or later."
+          },
+          {
+            "$ref": "#/components/parameters/notionVersion"
           }
         ],
         "responses": {
@@ -12730,6 +12742,9 @@
               "default": "2026-03-11"
             },
             "description": "The Notion API version. The page-markdown endpoints require 2026-03-11 or later."
+          },
+          {
+            "$ref": "#/components/parameters/notionVersion"
           }
         ],
         "requestBody": {

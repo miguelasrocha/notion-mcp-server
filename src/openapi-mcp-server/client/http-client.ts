@@ -131,6 +131,9 @@ export class HttpClient {
               urlParameters[param.name] = params[param.name]
               delete bodyParams[param.name]
             }
+          } else if (param.in === 'header') {
+            // Header values are server-managed (from the spec default); never send them in the body.
+            delete bodyParams[param.name]
           }
         }
       }

@@ -40,6 +40,14 @@ describe('Life OS tool additions', () => {
     }
   })
 
+  it('declares the version header on comment creation and accepts position', () => {
+    const createComment = spec.paths['/v1/comments']?.post
+    expect(JSON.stringify(createComment?.parameters)).toContain('#/components/parameters/notionVersion')
+    const patchChildren = spec.paths['/v1/blocks/{block_id}/children']?.patch
+    const properties = (patchChildren as any)?.requestBody?.content?.['application/json']?.schema?.properties
+    expect(properties).toHaveProperty('position')
+  })
+
   it('defaults Notion-Version to 2026-03-11', () => {
     expect((spec.components?.parameters?.notionVersion as any)?.schema?.default).toBe('2026-03-11')
   })

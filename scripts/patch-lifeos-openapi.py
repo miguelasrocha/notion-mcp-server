@@ -79,6 +79,20 @@ comment["get"]["operationId"] = "retrieve-comment-by-id"
 spec["paths"].update({p: full["paths"][p] for p in COPY_PATHS})
 added.extend(comment.values())
 
+# Every operation must declare the version header; comment creation was missing it.
+for path, methods in spec["paths"].items():
+    for method, op in methods.items():
+        if not isinstance(op, dict):
+            continue
+        params = op.setdefault("parameters", [])
+        if not any(isinstance(p, dict) and p.get("$ref", "").endswith("/notionVersion") for p in params):
+            params.append({"$ref": "#/components/parameters/notionVersion"})
+
+# 2026 block children use position instead of after.
+patch_children = spec["paths"]["/v1/blocks/{block_id}/children"]["patch"]
+props = patch_children["requestBody"]["content"]["application/json"]["schema"].setdefault("properties", {})
+props.setdefault("position", {"type": "object", "additionalProperties": True})
+
 spec["components"]["parameters"]["notionVersion"]["schema"] = {
     "type": "string",
     "default": "2026-03-11",
