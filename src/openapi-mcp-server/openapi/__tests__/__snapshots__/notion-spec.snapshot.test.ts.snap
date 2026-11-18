@@ -4,12 +4,21 @@ exports[`Notion OpenAPI spec -> MCP tools (snapshot) > generates a stable set of
 [
   "create-a-comment",
   "create-a-data-source",
+  "create-database",
+  "create-view",
+  "create-view-query",
   "delete-a-block",
+  "delete-a-comment",
+  "delete-view",
+  "delete-view-query",
   "get-block-children",
   "get-self",
   "get-user",
   "get-users",
+  "get-view-query-results",
+  "list-comments",
   "list-data-source-templates",
+  "list-views",
   "move-page",
   "patch-block-children",
   "patch-page",
@@ -17,14 +26,18 @@ exports[`Notion OpenAPI spec -> MCP tools (snapshot) > generates a stable set of
   "post-search",
   "query-data-source",
   "retrieve-a-block",
-  "retrieve-a-comment",
   "retrieve-a-data-source",
   "retrieve-a-database",
   "retrieve-a-page",
   "retrieve-a-page-property",
+  "retrieve-a-view",
+  "retrieve-comment-by-id",
   "retrieve-page-markdown",
   "update-a-block",
+  "update-a-comment",
   "update-a-data-source",
+  "update-a-database",
+  "update-a-view",
   "update-page-markdown",
 ]
 `;
@@ -63,6 +76,85 @@ Error Responses:
     ],
   },
   {
+    "description": "Notion | Create a database
+Error Responses:
+400: 
+401: 
+403: 
+404: 
+406: 
+409: 
+429: 
+500: 
+503: 
+504: 
+529: ",
+    "httpMethod": "post",
+    "name": "create-database",
+    "properties": [
+      "cover",
+      "database_type",
+      "description",
+      "icon",
+      "initial_data_source",
+      "is_inline",
+      "parent",
+      "show_data_source_title",
+      "title",
+    ],
+    "required": [
+      "parent",
+    ],
+  },
+  {
+    "description": "Notion | Create a view
+Error Responses:
+400: 
+401: 
+403: 
+404: 
+406: 
+409: 
+429: 
+500: 
+503: 
+504: 
+529: ",
+    "httpMethod": "post",
+    "name": "create-view",
+    "properties": [
+      "body",
+    ],
+    "required": [
+      "body",
+    ],
+  },
+  {
+    "description": "Notion | Create a view query
+Error Responses:
+400: 
+401: 
+403: 
+404: 
+406: 
+409: 
+429: 
+500: 
+503: 
+504: 
+529: ",
+    "httpMethod": "post",
+    "name": "create-view-query",
+    "properties": [
+      "body",
+      "view_id",
+    ],
+    "required": [
+      "body",
+      "view_id",
+    ],
+  },
+  {
     "description": "Notion | Delete a block
 Error Responses:
 400: Bad request",
@@ -73,6 +165,77 @@ Error Responses:
     ],
     "required": [
       "block_id",
+    ],
+  },
+  {
+    "description": "Notion | Delete a comment
+Error Responses:
+400: 
+401: 
+403: 
+404: 
+406: 
+409: 
+429: 
+500: 
+503: 
+504: 
+529: ",
+    "httpMethod": "delete",
+    "name": "delete-a-comment",
+    "properties": [
+      "comment_id",
+    ],
+    "required": [
+      "comment_id",
+    ],
+  },
+  {
+    "description": "Notion | Delete a view
+Error Responses:
+400: 
+401: 
+403: 
+404: 
+406: 
+409: 
+429: 
+500: 
+503: 
+504: 
+529: ",
+    "httpMethod": "delete",
+    "name": "delete-view",
+    "properties": [
+      "view_id",
+    ],
+    "required": [
+      "view_id",
+    ],
+  },
+  {
+    "description": "Notion | Delete a view query
+Error Responses:
+400: 
+401: 
+403: 
+404: 
+406: 
+409: 
+429: 
+500: 
+503: 
+504: 
+529: ",
+    "httpMethod": "delete",
+    "name": "delete-view-query",
+    "properties": [
+      "query_id",
+      "view_id",
+    ],
+    "required": [
+      "query_id",
+      "view_id",
     ],
   },
   {
@@ -125,6 +288,58 @@ Error Responses:
     "required": [],
   },
   {
+    "description": "Notion | Get view query results
+Error Responses:
+400: 
+401: 
+403: 
+404: 
+406: 
+409: 
+429: 
+500: 
+503: 
+504: 
+529: ",
+    "httpMethod": "get",
+    "name": "get-view-query-results",
+    "properties": [
+      "page_size",
+      "query_id",
+      "start_cursor",
+      "view_id",
+    ],
+    "required": [
+      "query_id",
+      "view_id",
+    ],
+  },
+  {
+    "description": "Notion | List comments
+Error Responses:
+400: 
+401: 
+403: 
+404: 
+406: 
+409: 
+429: 
+500: 
+503: 
+504: 
+529: ",
+    "httpMethod": "get",
+    "name": "list-comments",
+    "properties": [
+      "block_id",
+      "page_size",
+      "start_cursor",
+    ],
+    "required": [
+      "block_id",
+    ],
+  },
+  {
     "description": "Notion | List templates in a data source
 Error Responses:
 400: Bad request",
@@ -138,6 +353,30 @@ Error Responses:
     "required": [
       "data_source_id",
     ],
+  },
+  {
+    "description": "Notion | List views
+Error Responses:
+400: 
+401: 
+403: 
+404: 
+406: 
+409: 
+429: 
+500: 
+503: 
+504: 
+529: ",
+    "httpMethod": "get",
+    "name": "list-views",
+    "properties": [
+      "data_source_id",
+      "database_id",
+      "page_size",
+      "start_cursor",
+    ],
+    "required": [],
   },
   {
     "description": "Notion | Move a page
@@ -255,21 +494,6 @@ Error Responses:
     ],
   },
   {
-    "description": "Notion | Retrieve comments
-Error Responses:
-400: Bad request",
-    "httpMethod": "get",
-    "name": "retrieve-a-comment",
-    "properties": [
-      "block_id",
-      "page_size",
-      "start_cursor",
-    ],
-    "required": [
-      "block_id",
-    ],
-  },
-  {
     "description": "Notion | Retrieve a data source
 Error Responses:
 400: Bad request",
@@ -327,6 +551,52 @@ Error Responses:
     ],
   },
   {
+    "description": "Notion | Retrieve a view
+Error Responses:
+400: 
+401: 
+403: 
+404: 
+406: 
+409: 
+429: 
+500: 
+503: 
+504: 
+529: ",
+    "httpMethod": "get",
+    "name": "retrieve-a-view",
+    "properties": [
+      "view_id",
+    ],
+    "required": [
+      "view_id",
+    ],
+  },
+  {
+    "description": "Notion | Retrieve a comment
+Error Responses:
+400: 
+401: 
+403: 
+404: 
+406: 
+409: 
+429: 
+500: 
+503: 
+504: 
+529: ",
+    "httpMethod": "get",
+    "name": "retrieve-comment-by-id",
+    "properties": [
+      "comment_id",
+    ],
+    "required": [
+      "comment_id",
+    ],
+  },
+  {
     "description": "Notion | Retrieve a page as Markdown
 Error Responses:
 400: Bad request
@@ -359,6 +629,31 @@ Error Responses:
     ],
   },
   {
+    "description": "Notion | Update a comment
+Error Responses:
+400: 
+401: 
+403: 
+404: 
+406: 
+409: 
+429: 
+500: 
+503: 
+504: 
+529: ",
+    "httpMethod": "patch",
+    "name": "update-a-comment",
+    "properties": [
+      "body",
+      "comment_id",
+    ],
+    "required": [
+      "body",
+      "comment_id",
+    ],
+  },
+  {
     "description": "Notion | Update a data source
 Error Responses:
 400: Bad request",
@@ -372,6 +667,63 @@ Error Responses:
     ],
     "required": [
       "data_source_id",
+    ],
+  },
+  {
+    "description": "Notion | Update a database
+Error Responses:
+400: 
+401: 
+403: 
+404: 
+406: 
+409: 
+429: 
+500: 
+503: 
+504: 
+529: ",
+    "httpMethod": "patch",
+    "name": "update-a-database",
+    "properties": [
+      "cover",
+      "database_id",
+      "description",
+      "icon",
+      "in_trash",
+      "is_inline",
+      "is_locked",
+      "parent",
+      "show_data_source_title",
+      "title",
+    ],
+    "required": [
+      "database_id",
+    ],
+  },
+  {
+    "description": "Notion | Update a view
+Error Responses:
+400: 
+401: 
+403: 
+404: 
+406: 
+409: 
+429: 
+500: 
+503: 
+504: 
+529: ",
+    "httpMethod": "patch",
+    "name": "update-a-view",
+    "properties": [
+      "body",
+      "view_id",
+    ],
+    "required": [
+      "body",
+      "view_id",
     ],
   },
   {
