@@ -79,6 +79,15 @@ describe('server options', () => {
     expect(dnsOptions.allowedOrigins).toContain('http://[::1]:4321')
   })
 
+  it('allows hosts from MCP_ALLOWED_HOSTS', () => {
+    process.env.MCP_ALLOWED_HOSTS = 'notion-mcp-life.life-os.svc.cluster.local,example.local:3000'
+    const options = parseServerOptions([...argv, '--transport', 'http', '--host', '0.0.0.0', '--unsafe-disable-auth'])
+    const dnsOptions = getDnsRebindingProtectionOptions(options)
+    expect(dnsOptions?.allowedHosts).toContain('notion-mcp-life.life-os.svc.cluster.local')
+    expect(dnsOptions?.allowedHosts).toContain('example.local:3000')
+    delete process.env.MCP_ALLOWED_HOSTS
+  })
+
   it('keeps DNS rebinding protection off when HTTP auth is enabled', () => {
     const options = parseServerOptions([...argv, '--transport', 'http'])
 

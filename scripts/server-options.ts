@@ -148,6 +148,10 @@ function getAllowedHosts(host: string, port: number): string[] {
     allowedHosts.add(allowedHost)
     allowedHosts.add(`${allowedHost}:${port}`)
   }
+  for (const extra of (process.env.MCP_ALLOWED_HOSTS ?? '').split(',')) {
+    const value = extra.trim()
+    if (value) allowedHosts.add(value)
+  }
   return [...allowedHosts]
 }
 

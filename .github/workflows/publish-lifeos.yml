@@ -11,7 +11,7 @@ permissions:
 
 env:
   IMAGE: ghcr.io/miguelasrocha/notion-mcp-server
-  TAG: 2.6.1-lifeos.1
+  TAG: 2.6.1-lifeos.2
 
 jobs:
   build:
